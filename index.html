@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Greetings for Quỳnh</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: url('/mnt/data/image.png') no-repeat center center fixed; /* Set the uploaded image as the background */
+            background-size: cover;
+            color: pink;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Simulating stars in the night sky */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('') repeat;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .message {
+            margin: 20px auto;
+            font-size: 1.5em;
+            line-height: 1.5;
+            display: none; /* Initially hidden */
+        }
+
+        .snow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            background-color: white;
+            opacity: 0.9;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 1em;
+            opacity: 0.8;
+        }
+
+        .countdown {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .lights {
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .show-message-btn {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff758c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .show-message-btn:hover {
+            background-color: #ff7eb3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Merry Christmas, Quỳnh!</h1>
+    </header>
+    <main>
+        <!-- Button to show the Christmas greeting -->
+        <button class="show-message-btn" onclick="showMessage()">nhấn vào đi</button>
+
+        <!-- Hidden message -->
+        <p class="message" id="greeting-message">
+            🎄✨không có j hết á nên đừng có nhấn✨🎄
+        </p>
+
+        <div class="countdown">
+            <p>Time until Christmas: <span id="countdown-timer"></span></p>
+        </div>
+
+        <div class="lights">
+            <p>🎄🎁✨🎄🎁✨</p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Happy Holidays</p>
+    </footer>
+
+    <div class="snow"></div>
+    <div class="stars"></div>
+
+    <script>
+        const snowContainer = document.querySelector('.snow');
+
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.style.width = `${Math.random() * 10 + 5}px`;
+            snowflake.style.height = snowflake.style.width;
+            snowflake.style.left = `${Math.random() * 100}vw`;
+            snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`;
+
+            snowContainer.appendChild(snowflake);
+
+            setTimeout(() => snowflake.remove(), 5000);
+        }
+
+        setInterval(createSnowflake, 100);
+
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            const christmas = new Date(now.getFullYear(), 11, 25);
+            const diff = christmas - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown-timer').textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        setInterval(updateCountdown, 1000);
+
+        // Show message on button click
+        function showMessage() {
+            const message = document.getElementById('greeting-message');
+            message.style.display = 'block'; // Show the greeting message
+        }
+    </script>
+
+    <!-- Christmas script inclusion -->
+    <script type="text/javascript" src="https://dembuon.vn/lib/xmas.js"></script>
+</body>
+</html>
